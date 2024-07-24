@@ -1,0 +1,798 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\usepackage{soul}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={R Notebook},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{R Notebook}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{chip-seq-analysis-of-the-transcription-factor-homeobox-gene-1-from-arabidopsis-thaliana}{%
+\section{\texorpdfstring{ChIP-Seq analysis of the transcription factor
+HOMEOBOX GENE 1 from \emph{Arabidopsis
+thaliana}}{ChIP-Seq analysis of the transcription factor HOMEOBOX GENE 1 from Arabidopsis thaliana}}\label{chip-seq-analysis-of-the-transcription-factor-homeobox-gene-1-from-arabidopsis-thaliana}}
+
+\hypertarget{authors}{%
+\paragraph{Authors:}\label{authors}}
+
+Julio Ramírez Guerrero, Julián Román Camacho, Silvestre Ruano Rodríguez,
+Manuel Racero de la Rosa, Rafael Rubio Ramos.
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+\hypertarget{background}{%
+\subsubsection{Background}\label{background}}
+
+The motivation for this study lies in the need to understand how genetic
+mechanisms and environmental signals are linked to regulate some vital
+functions of plants, such as their growth rate.
+
+\hypertarget{objective}{%
+\subsubsection{Objective}\label{objective}}
+
+The aim of the study is to identify the regions of the genome where the
+transcription factor will bind, in order to obtain information on the
+gene regulation of the \emph{ARABIDOPSIS THALIANA HOMEOBOX GENE 1}
+(\emph{ATH1}) gene.
+
+\hypertarget{materials-y-methods}{%
+\subsection{Materials y Methods}\label{materials-y-methods}}
+
+\hypertarget{experimenta-design}{%
+\subsubsection{Experimenta Design}\label{experimenta-design}}
+
+In this task, data deposited in GEO under accession number GSE157332
+will be used. The article samples are as follows:
+
+\begin{itemize}
+\item
+  Chip
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ATH1-GFP\_chipseq\_rep1
+  \item
+    ATH1-GFP\_chipseq\_rep2
+  \item
+    ATH1-GFP\_chipseq\_rep3
+  \end{itemize}
+\item
+  Mock
+
+  \begin{itemize}
+  \tightlist
+  \item
+    WT\_control\_Ler\_chipseq\_rep1
+  \item
+    WT\_control\_Ler\_chipseq\_rep2
+  \item
+    WT\_control\_Ler\_chipseq\_rep3
+  \end{itemize}
+\end{itemize}
+
+For Chip samples, an anti-GFP antibody was used on samples of transgenic
+\emph{Arabidopsis thaliana} plants expressing ATH1 fused to GFP. In the
+Mock samples, the same protocol was followed but using wild-type plants,
+i.e. the antibody is used without GFP being present.
+
+\hypertarget{workflow}{%
+\subsubsection{Workflow}\label{workflow}}
+
+To identify the target genes of the ATH1 transcription factor, the
+following workflow has been followed.
+
+The starting data is a fastq file for each replicate, containing the
+sequencing results (after immunoprecipitating the chromatin according to
+the experimental design explained). First, we prepare the workspace and
+check the quality of the reads from the fastq file.
+
+Next, the reads are mapped to the reference genome, using bowtie2. Using
+the result of this alignment, peak calling is performed with macs2. The
+aim of this step is to identify sites in the genome where a large number
+of reads accumulate in the ChIP samples and not in the control samples.
+We will consider these to be regions to which ATH1 binds.
+
+Once the list of sites in the genome is obtained, we try to assign to
+each peak found the gene whose activity is regulated, using the Nearest
+Downstream Gene method (we look for the nearest downstream gene).
+Finally, we use HOMER to search for DNA motifs in the identified peaks.
+
+\begin{figure}
+\centering
+\includegraphics{images/workflow.webp}
+\caption{Workflow for ChIP-Seq data analysis}
+\end{figure}
+
+To download the \emph{Arabidopsis thaliana} genome and the corresponding
+database annotation, the following scripts were used:
+
+\begin{verbatim}
+#!/bin/bash
+
+#SBATCH --job-name=index
+#SBATCH --export=ALL
+#SBATCH --output=genome_index
+
+## Download reference genome
+cd /home/omicas/grupo5/tarea2/genome
+wget -O genome.fa.gz https://ftp.ebi.ac.uk/ensemblgenomes/pub/release-58/plants/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
+gunzip genome.fa.gz
+
+# Download annotation
+cd /home/omicas/grupo5/tarea2/annotation
+wget -O annotation.gtf.gz https://ftp.ebi.ac.uk/ensemblgenomes/pub/release-58/plants/gtf/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.58.gtf.gz
+gunzip annotation.gtf.gz
+
+## Construction of the genome index
+cd /home/omicas/grupo5/tarea2/genome
+bowtie2-build genome.fa index
+\end{verbatim}
+
+For the processing of each sample, the following script was used.
+
+\begin{verbatim}
+#!/bin/bash
+
+#SBATCH --export=ALL
+
+SAMPLE_DIR=$1
+SRR=$2
+NAME=$3
+
+## Download fastq files
+cd $SAMPLE_DIR
+fastq-dump --gzip --split-files $SRR
+
+## Sample quality control and mapping of readings
+if [ -f ${SRR}_2.fastq.gz ]
+then
+   fastqc ${SRR}_1.fastq.gz
+   fastqc ${SRR}_2.fastq.gz
+
+   bowtie2 -x ../../genome/index -1 ${SRR}_1.fastq.gz -2 ${SRR}_2.fastq.gz -S $NAME.sam
+else
+   fastqc ${SRR}_1.fastq.gz
+
+   bowtie2 -x ../../genome/index -U ${SRR}_1.fastq.gz -S $NAME.sam
+fi
+
+## The generated sam is transformed into a bam (takes less space)
+samtools sort -o $NAME.bam $NAME.sam
+## The sam file and the original fastq are deleted
+rm $NAME.sam
+rm *.fastq.gz
+## An index is built for the .bam file
+samtools index $NAME.bam
+bamCoverage -bs 5 --normalizeUsing CPM --bam $NAME.bam -o $NAME.bw
+\end{verbatim}
+
+Finally, the script used for the call to peaks is included.
+
+\begin{verbatim}
+#!/bin/bash
+
+#SBATCH --export=ALL
+
+SAMPLE_DIR=$1
+IP=$2
+CTRL=$3
+NAME=$4
+
+cd $SAMPLE_DIR
+
+macs2 callpeak -t $IP -c $CTRL -f BAM --outdir . -n $NAME
+\end{verbatim}
+
+In the peak call, IP refers to the ``Chip'' samples, and ``CTRL'' refers
+to the ``mock'' samples. Thus, the mock is used to estimate the
+background noise. By using three ChIP files and three mock files, this
+tool generates a pool with the data from the different replicates before
+making the peak call. A peak will be considered to exist when a certain
+area accumulates many readings in the ChIP samples but not in the mock
+samples. In this step, the default parameters (q-value \textless{} 0.05
+and fold-enrichment between 5 and 50) are used.
+
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(}\StringTok{"BiocManager"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{))}
+    \FunctionTok{install.packages}\NormalTok{(}\StringTok{"BiocManager"}\NormalTok{)}
+
+\NormalTok{BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"TxDb.Athaliana.BioMart.plantsmart28"}\NormalTok{)}
+\NormalTok{BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"org.At.tair.db"}\NormalTok{)}
+\NormalTok{BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"pathview"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{analysis-of-the-global-distribution-of-the-cystrome}{%
+\subsubsection{Analysis of the global distribution of the
+Cystrome}\label{analysis-of-the-global-distribution-of-the-cystrome}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ChIPseeker)}
+\FunctionTok{library}\NormalTok{(BiocManager)}
+\FunctionTok{library}\NormalTok{(GenomicFeatures)}
+\FunctionTok{library}\NormalTok{(TxDb.Athaliana.BioMart.plantsmart28)}
+\FunctionTok{library}\NormalTok{(ggupset)}
+\NormalTok{txdb }\OtherTok{\textless{}{-}}\NormalTok{ TxDb.Athaliana.BioMart.plantsmart28}
+\NormalTok{chip.peaks }\OtherTok{\textless{}{-}} \FunctionTok{readPeakFile}\NormalTok{(}\AttributeTok{peakfile =} \StringTok{"output\_peaks.narrowPeak"}\NormalTok{,}\AttributeTok{header=}\ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{length}\NormalTok{(chip.peaks)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 783
+\end{verbatim}
+
+Peaks represent the regions of the genome where the highest binding of
+the protein of interest has been found. In this case we found 783 peaks
+where the transcription factor binds.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{promoter }\OtherTok{\textless{}{-}} \FunctionTok{getPromoters}\NormalTok{(}\AttributeTok{TxDb=}\NormalTok{txdb, }
+                         \AttributeTok{upstream=}\DecValTok{2000}\NormalTok{, }
+                         \AttributeTok{downstream=}\DecValTok{2000}\NormalTok{)}
+\NormalTok{chip.peakAnno }\OtherTok{\textless{}{-}} \FunctionTok{annotatePeak}\NormalTok{(}\AttributeTok{peak =}\NormalTok{ chip.peaks, }
+                             \AttributeTok{tssRegion=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2000}\NormalTok{, }\DecValTok{2000}\NormalTok{),}
+                             \AttributeTok{TxDb=}\NormalTok{txdb)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## >> preparing features information...      2024-07-24 20:09:32 
+## >> identifying nearest features...        2024-07-24 20:09:32 
+## >> calculating distance from peak to TSS...   2024-07-24 20:09:32 
+## >> assigning genomic annotation...        2024-07-24 20:09:32 
+## >> assigning chromosome lengths           2024-07-24 20:09:39 
+## >> done...                    2024-07-24 20:09:39
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plotAnnoPie}\NormalTok{(chip.peakAnno)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Task_ChIP_seq_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plotAnnoBar}\NormalTok{(chip.peakAnno)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Task_ChIP_seq_files/figure-latex/unnamed-chunk-3-2.pdf}
+
+In this series of graphs we will look at how the peaks are distributed
+in the different gene structures, to see where the proteins of interest
+bind. The first graph is a pie chart showing the distribution of the
+peaks, where we can see that they will mainly bind to promoters at a
+distance less than or equal to 1kb (50.06\%), then those promoters at a
+distance of 1-2 kb (24.27\%). The rest of the elements that are at a
+greater distance should not be taken into account, as we assume that it
+is not very reliable and there is not much certainty that they regulate
+the corresponding gene. The bar graph is more of the same, it shows the
+distributions of the distances and as we can see again, most of the
+peaks are found in the promoters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plotDistToTSS}\NormalTok{(chip.peakAnno,}
+              \AttributeTok{title=}\StringTok{"Distribution of genomic loci relative to TSS"}\NormalTok{,}
+              \AttributeTok{ylab =} \StringTok{"Genomic Loci (\%) (5\textquotesingle{} {-}\textgreater{} 3\textquotesingle{})"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Task_ChIP_seq_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+This can again be corroborated by the \textbf{distance to TSS} graph,
+which shows the distribution of ChIP-Seq peaks with respect to the
+position relative to the transcription start site (TSS). About 40\% of
+the peaks are upstream of the TSS, between 0-1kb. The same is true for
+downstream, but to a lesser extent. There is also a large percentage of
+peaks that are 1-3kb away from the TSS.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{upsetplot}\NormalTok{(chip.peakAnno)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Task_ChIP_seq_files/figure-latex/unnamed-chunk-5-1.pdf}
+\includegraphics{images/Upsetplot.png}
+
+The \textbf{upsetplot} graph shows where the peaks overlap and their
+frequency. It is observed that in most peaks (around 300) the promoters
+are located in areas rich in intergenic regions, or for example, the
+promoters also overlap with some gene areas, such as exons and 5'UTRs
+(around 50).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plotPeakProf2}\NormalTok{(}\AttributeTok{peak =}\NormalTok{ chip.peaks, }\AttributeTok{upstream =} \FunctionTok{rel}\NormalTok{(}\FloatTok{0.2}\NormalTok{), }\AttributeTok{downstream =} \FunctionTok{rel}\NormalTok{(}\FloatTok{0.2}\NormalTok{),}
+              \AttributeTok{conf =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{by =} \StringTok{"gene"}\NormalTok{, }\AttributeTok{type =} \StringTok{"body"}\NormalTok{, }\AttributeTok{nbin =} \DecValTok{800}\NormalTok{,}
+              \AttributeTok{TxDb =}\NormalTok{ txdb, }\AttributeTok{weightCol =} \StringTok{"V5"}\NormalTok{,}\AttributeTok{ignore\_strand =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## >> binning method is used...2024-07-24 20:09:41
+## >> preparing body regions by gene... 2024-07-24 20:09:41
+## >> preparing tag matrix by binning...  2024-07-24 20:09:41 
+## >> preparing matrix with extension from (TSS-20%)~(TTS+20%)... 2024-07-24 20:09:41
+## >> 40 peaks(7.155635%), having lengths smaller than 800bp, are filtered... 2024-07-24 20:09:42
+## >> Running bootstrapping for tag matrix...        2024-07-24 20:09:45
+\end{verbatim}
+
+\includegraphics{Task_ChIP_seq_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+Finally, in the \textbf{metageneplot}, the peak upstream of the TSS
+could indicate a strong binding of the protein to the promoter region of
+the gene, which is what is observed in the other plots. We also found
+other peaks downstream of the TTS at the end of transcription, perhaps
+related to post-transcriptional regulation. And the intermediate zone
+between TSS and TTS has no prominent peaks indicating the absence of the
+protein in this transcriptional region.
+
+\begin{figure}
+\centering
+\includegraphics{images/imagePicos1.webp}
+\caption{First IGV screenshot.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{images/imagePicos2.webp}
+\caption{Second IGV screenshot.}
+\end{figure}
+
+In the following images we see a series of peaks, which correspond to
+our output\_peak. If we look at the sequence we see that there is a high
+concentration of reads in the Chip1 sample that does not appear in the
+Mock1. These peaks are indicative that our transcription factor (ATH1)
+binds to that region. At the bottom of the image we have our genes, the
+lines correspond to the introns, the squarer areas are the exons and the
+arrow indicates the direction in which it is transcribed.
+
+It is important to mention that this peak is located upstream of the
+gene, so it would be the promoter of the gene.
+
+\hypertarget{regulome-analysis-of-the-corresponding-transcription-factor-or-epigenetic-mark.}{%
+\subsubsection{Regulome analysis of the corresponding transcription
+factor or epigenetic
+mark.}\label{regulome-analysis-of-the-corresponding-transcription-factor-or-epigenetic-mark.}}
+
+After the graphical analysis, we saved in a txt file called
+``target\_genes.txt'' the genes found in the promoters, which are the
+ones we considered important for the distribution of peaks.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chip.annotation }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(chip.peakAnno)}
+
+\NormalTok{target.genes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(chip.annotation}\SpecialCharTok{$}\NormalTok{geneId[chip.annotation}\SpecialCharTok{$}\NormalTok{annotation }\SpecialCharTok{==} \StringTok{"Promoter (\textless{}=1kb)"}\NormalTok{],}
+\NormalTok{                  chip.annotation}\SpecialCharTok{$}\NormalTok{geneId[chip.annotation}\SpecialCharTok{$}\NormalTok{annotation }\SpecialCharTok{==} \StringTok{"Promoter (1{-}2kb)"}\NormalTok{])}
+\FunctionTok{length}\NormalTok{(target.genes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 582
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{write}\NormalTok{(}\AttributeTok{x =}\NormalTok{ target.genes,}\AttributeTok{file =} \StringTok{"target\_genes.txt"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Of the 783 peaks found in the IGV file, we will consider those that are
+at least 2 kb away from the promoter of a downstream gene. The
+percentage of peaks that fulfil this characteristic corresponds to
+74.31\% of all peaks found. Thus, we consider a total of 582 genes that
+correspond to DNA reads where transcription factors bind.
+
+\href{target_genes.txt}{ATH1 target genes.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(clusterProfiler)}
+\FunctionTok{library}\NormalTok{(org.At.tair.db)}
+\FunctionTok{library}\NormalTok{(enrichplot)}
+
+\NormalTok{chip.enrich.go }\OtherTok{\textless{}{-}} \FunctionTok{enrichGO}\NormalTok{(}\AttributeTok{gene =}\NormalTok{ target.genes,}
+                           \AttributeTok{OrgDb         =}\NormalTok{ org.At.tair.db,}
+                           \AttributeTok{ont           =} \StringTok{"BP"}\NormalTok{,}
+                           \AttributeTok{pAdjustMethod =} \StringTok{"BH"}\NormalTok{,}
+                           \AttributeTok{pvalueCutoff  =} \FloatTok{0.05}\NormalTok{,}
+                           \AttributeTok{readable      =} \ConstantTok{FALSE}\NormalTok{,}
+                           \AttributeTok{keyType =} \StringTok{"TAIR"}\NormalTok{)}
+
+
+
+
+\NormalTok{chip.enrich.kegg }\OtherTok{\textless{}{-}} \FunctionTok{enrichKEGG}\NormalTok{(}\AttributeTok{gene  =}\NormalTok{ target.genes,}
+                               \AttributeTok{organism =} \StringTok{"ath"}\NormalTok{,}
+                               \AttributeTok{pAdjustMethod =} \StringTok{"BH"}\NormalTok{,}
+                               \AttributeTok{pvalueCutoff  =} \FloatTok{0.05}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(chip.enrich.go,}\AttributeTok{showCategory =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Task_ChIP_seq_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+In the first barplot, the length of the bars indicates the magnitude of
+the enrichment for the associated function of each group of genes, so
+that the longer the bar length, the stronger the enrichment of the genes
+for that process or function. The p-value of each bar indicates whether
+the enrichment is significant or not; in this case, red indicates higher
+statistical significance (lower p-value).
+
+In this context, when analysing the barplot graph shown, there is high
+statistical significance that the selected peaks are transcription
+factor binding sites for genes that are involved in cell signalling and
+communication processes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dotplot}\NormalTok{(chip.enrich.go,}\AttributeTok{showCategory =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Task_ChIP_seq_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+This dotplot indicates the ratio of enriched genes to the total number
+of genes associated with a specific function. A high GeneRatio indicates
+that a significant proportion of genes associated with a specific
+function are present in the set of genes close to the peaks.
+
+In our case, the genes with the highest GeneRatio are those associated
+with \textbf{cell signalling and cell communication regulation}
+functions, as well as those related to \textbf{regulation of oxygen
+levels} as in the previous graph. This set of genes has a low p-value,
+indicating that the observation is unlikely to be due to chance. In
+summary, the combination of a high GeneRatio and a low p-value
+reinforces the evidence that these genes related to cell signalling and
+communication are biologically relevant to our gene set, and that this
+association is not simply the result of random fluctuations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{emapplot}\NormalTok{(}\FunctionTok{pairwise\_termsim}\NormalTok{(chip.enrich.go),}\AttributeTok{showCategory =} \DecValTok{10}\NormalTok{,}\AttributeTok{cex\_label\_category=}\FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Task_ChIP_seq_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+Thirdly, the emapplot graph is used to visualise similarity
+relationships between the different genes under study. The graph shows
+relationships between cell regulation and cell communication genes,
+forming a triangular figure, and a hexagon is also displayed, indicating
+similarity relationships between genes involved in cell response as a
+function of oxygen levels in the cell. Finally, there is a set of genes
+set apart, represented as an isolated point, related to developmental
+functions of the plant after the embryonic stage. Notably, this single
+gene contains the highest p-value and the lowest number of genes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cnetplot}\NormalTok{(chip.enrich.go,}\AttributeTok{showCategory =} \DecValTok{10}\NormalTok{,}\AttributeTok{cex.params=}\FunctionTok{list}\NormalTok{(}\AttributeTok{gene\_label=}\FloatTok{0.5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Task_ChIP_seq_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+In this Cnetplot graph we can see the grouping of the enriched genes in
+3 very well differentiated clusters, which coincide with the previous
+graph. The cluster in the upper right-hand zone is related to the
+post-embryonic morphogenesis functions of the plant. Meanwhile, the
+central cluster shows genes that influence cell regulation and
+communication. Finally, the bottom cluster reflects those genes
+associated with the regulation of oxygen levels, such as response to
+hypoxia, cellular response to oxygen depletion, etc.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(pathview)}
+\NormalTok{df.chip.enrich.kegg }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(chip.enrich.kegg)}
+\FunctionTok{head}\NormalTok{(df.chip.enrich.kegg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                      category         subcategory       ID
+## ath04075 Environmental Information Processing Signal transduction ath04075
+## ath04016 Environmental Information Processing Signal transduction ath04016
+##                                                                     Description
+## ath04075 Plant hormone signal transduction - Arabidopsis thaliana (thale cress)
+## ath04016    MAPK signaling pathway - plant - Arabidopsis thaliana (thale cress)
+##          GeneRatio  BgRatio       pvalue    p.adjust      qvalue
+## ath04075     19/89 408/5530 1.847260e-05 0.001071411 0.001030577
+## ath04016     10/89 141/5530 7.686507e-05 0.002229087 0.002144131
+##                                                                                                                                                                                                 geneID
+## ath04075 AT1G17380/AT1G19050/AT1G45249/AT1G72450/AT1G74890/AT2G33860/AT3G03830/AT3G26810/AT3G56800/AT3G63010/AT4G34160/AT4G38850/AT5G53160/AT5G66880/AT1G04250/AT1G10470/AT1G19350/AT2G01570/AT4G00880
+## ath04016                                                                                           AT1G05100/AT1G20630/AT2G38470/AT3G56800/AT4G11280/AT5G07180/AT5G53160/AT5G62230/AT5G66880/AT5G47910
+##          Count
+## ath04075    19
+## ath04016    10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pathview}\NormalTok{(}\AttributeTok{gene.data =}\NormalTok{ target.genes,}
+         \AttributeTok{pathway.id =} \StringTok{"ath04075"}\NormalTok{,}
+         \AttributeTok{species =} \StringTok{"ath"}\NormalTok{,}\AttributeTok{gene.idtype =} \StringTok{"TAIR"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Note: 57 of 551 unique input IDs unmapped."
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{ath04075.pathview.png}
+\caption{Hormone signalling pathway in Arabidopsis.}
+\end{figure}
+
+It is important to note from the image above that the transcription
+factor under study regulates those genes coloured red, which is not the
+case with uncoloured genes, where it shows no regulation at all.
+
+\hypertarget{enrichment-of-dna-motifs-at-binding-sites}{%
+\subsubsection{Enrichment of DNA motifs at binding
+sites}\label{enrichment-of-dna-motifs-at-binding-sites}}
+
+Among the known motifs, the most enriched is related to Replumless
+(BLH), which is a BELL (plant developmental regulation) transcription
+factor related to ATH1.
+
+It can be seen that among the most enriched motifs, the most frequently
+repeated motifs belong to the Homeobox family, which is characteristic
+of transcription factors involved in the regulation of cell development
+and differentiation. Within the motifs associated with the Homeobox (HB)
+family, a rather repeated motif, AA\ul{TGATTG,} associated with the ATHB
+transcription factors that are more specifically involved in
+\textbf{leaf and root development, stress response and growth
+regulation,} is clearly visible.
+
+Among the unknown motifs, the second most enriched is \ul{TGATTG}AT,
+largely matching the sequence of the most repeated one seen above.
+Furthermore, according to the Homer tool it has the best match to the
+Homeobox family, suggesting that ATH1 , binds to this motif.
+
+The known motifs with the highest enrichment are shown below.
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2917}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2361}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Clasifcation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Known Motifs
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+P-value
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & -GTC--ATCA & Replumless(BLH)/Arabidopsis-RPL.GFP & 1e-88 \\
+2 & GA-G-GAC-GG- & Knotted(Homeobox)/Corn-KN1 & 1e-71 \\
+3 & TGACGTCAC- & FEA4(bZIP)/Corn-FEA4 & 1e-23 \\
+4 & CA-TCATTCA & WUS1(Homeobox)/colamp-WUS1 & 1e-21 \\
+5 & AA\ul{TGATTG} & ATHB5(HB)/colamp-ATHB5 & 1e-18 \\
+6 & AA\ul{TGATTG} & ATHB7(Homeobox)/col-ATHB7 & 1e-17 \\
+13 & AA\ul{TGATTG} & ATHB6(Homeobox)/col-ATHB6 & 1e-8 \\
+\end{longtable}
+
+En la tabla se muestran los motivos desconocidos más enriquecidos.
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2394}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2394}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2817}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2394}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Clasification
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Unknown Motifs
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Best Match
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+P-value
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & GTCACATC & Knotted(Homeobox)/Corn-KN1 & 1e-73 \\
+2 & \ul{TGATTG}AT & WUS1(Homeobox)/colamp-WUS1 & 1e-53 \\
+3 & -ACCTGTC & bZIP18(bZIP)/colamp-bZIP18 & 1e-29 \\
+4 (posible falso positivo) & GTCTTTTC &
+Replumless(BLH)/Arabidopsis-RPL.GFP & 1e-11 \\
+\end{longtable}
+
+\hypertarget{conclusions}{%
+\subsection{Conclusions}\label{conclusions}}
+
+The most relevant conclusions of our study are the following:
+
+\begin{itemize}
+\item
+  Transcription factors of the Homeobox family (including ATH1)
+  repeatedly bind to a well-known TGATTG motif, as shown by Homer
+  analysis.
+\item
+  The ATH1 transcription factor regulates a multitude of vital plant
+  processes, such as regulation of cell signalling and cell
+  communication, regulation of oxygen levels and leaf and root
+  development, post-embryonic morphogenesis, among others.
+\end{itemize}
+
+Below are the common conclusions drawn from our study and the article:
+
+\begin{itemize}
+\item
+  Both the findings in the article and our results agree that ATH1
+  regulates genes involved in cell signalling and communication.
+\item
+  ATH1 regulates the DELLA protein (which is regulated by gibberellins),
+  which is closely related to plant morphology and its regulation.
+\item
+  The most repeated motif among the enriched motifs, both in our study
+  and in the paper, is TGATTG , which is in agreement with the results
+  extracted from the analysis with the Homer software.
+\end{itemize}
+
+A possible experiment to validate our results would be to compare a
+control plant and an ath1- mutant to check the type of plant growth in
+response to hormones, such as auxins. The control plants without hormone
+treatment grow following a rosette-like structure. However, the ath1-
+mutant plants grow following a default caulescent morphology. To our
+astonishment, after several days in which the plant structure was
+already established, auxins were inoculated to our mutant, resulting in
+a morphological change that led to a shortening of the plant internodes,
+resulting in a rosette shape.
+
+\hypertarget{references}{%
+\subsection{References}\label{references}}
+
+Bencivenga, S. et al.~(2021). ARABIDOPSIS THALIANA HOMEOBOX GENE 1
+controls plant architecture by locally restricting environmental
+responses. \emph{Proc Natl Acad Sci U S A.118(17)}. PMID: 33888582.
+
+\end{document}
